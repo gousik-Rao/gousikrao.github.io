@@ -3,155 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gousik Rao | Software Engineer & AI Aspirant</title>
+    <title>Gousik Rao | Engineer & Athlete</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for Theme Handling */
         :root {
-            --bg-color: #0F172A; /* Deep Carbon */
-            --text-color: #E2E8F0;
-            --accent-blue: #38BDF8; /* Electric Blue */
-            --accent-green: #4ADE80; /* Volt Green */
-            --card-bg: #1E293B;
+            /* Dark Theme (Default) */
+            --bg-color: #0F172A;
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+            --card-bg: rgba(30, 41, 59, 0.7); /* Glass effect */
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent: #38BDF8; /* Electric Blue */
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --btn-text: #0F172A;
+            --toggle-bg: #1E293B;
         }
+
+        /* Light Theme Overrides */
+        body.light-mode {
+            --bg-color: #F8FAFC;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --accent: #0284C7; /* Darker Blue for contrast */
+            --accent-glow: rgba(2, 132, 199, 0.1);
+            --btn-text: #FFFFFF;
+            --toggle-bg: #E2E8F0;
+        }
+
+        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-main);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        /* Navbar */
-        nav {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* Floating Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--toggle-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .logo { font-weight: bold; font-size: 1.5rem; color: var(--accent-blue); }
+        .theme-toggle svg { width: 24px; height: 24px; fill: var(--text-main); }
+
+        /* Layout */
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 6rem 0 4rem; }
+        h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 1rem; 
+            letter-spacing: -0.05em; 
+            background: linear-gradient(to right, var(--accent), #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; }
         
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 5rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-        .highlight { color: var(--accent-blue); }
-        .subtitle { font-size: 1.25rem; color: #94A3B8; margin-bottom: 2rem; }
+        /* Modern Buttons */
         .btn {
-            display: inline-block;
-            background: var(--accent-blue);
-            color: #000;
+            background: var(--accent);
+            color: var(--btn-text);
             padding: 0.8rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 0 20px var(--accent-glow);
             transition: transform 0.2s;
         }
-        .btn:hover { transform: translateY(-3px); background: #fff; }
+        .btn:hover { transform: translateY(-2px); }
 
-        /* Sections */
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 1rem; }
-        h2 { border-left: 5px solid var(--accent-green); padding-left: 1rem; margin-bottom: 2rem; }
-
-        /* Grid Layouts */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        /* Cards with Glassmorphism */
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
             padding: 2rem;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            transition: 0.3s;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
         }
-        .card:hover { border-color: var(--accent-blue); }
-
-        /* The Athlete Section */
-        .athlete-section {
-            background: linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(30,41,59,0.5) 100%);
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            margin-top: 2rem;
-            border: 1px solid var(--accent-green);
-        }
+        .card:hover { border-color: var(--accent); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        
+        h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        h3 { margin-top: 0; }
+        
+        /* Skill Badges */
+        .badges img { margin: 5px 2px; height: 28px; }
 
         /* Footer */
-        footer { text-align: center; padding: 2rem; color: #64748B; font-size: 0.9rem; }
+        footer { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.9rem; }
         
-        /* Responsive */
-        @media (max-width: 768px) { h1 { font-size: 2rem; } }
+        @media (max-width: 768px) { h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Gousik.dev</div>
-        <div>
-            <a href="mailto:gousikthason@gmail.com" style="color:white; text-decoration:none;">Contact</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <h1>Hi, I'm <span class="highlight">Gousik Rao</span></h1>
-        <p class="subtitle">Software Engineer (Java/Spring Boot) | Incoming M.Sc. Candidate (Germany 2026)</p>
-        <a href="#projects" class="btn">View My Projects</a>
-    </section>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+        <svg id="icon-theme" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    </button>
 
     <div class="container">
-        <h2>🎯 The Vision: AI Infrastructure</h2>
-        <p>Currently bridging the gap between robust <strong>Backend Engineering</strong> and <strong>AI Integration</strong>. My goal is to architect scalable AI systems in the German tech ecosystem.</p>
-        <br>
         
-        <div style="margin-bottom: 3rem;">
-            <img src="https://img.shields.io/badge/Java-Spring_Boot-38BDF8?style=for-the-badge&logo=spring" alt="Spring Boot">
-            <img src="https://img.shields.io/badge/PostgreSQL-Database-38BDF8?style=for-the-badge&logo=postgresql" alt="Postgres">
-            <img src="https://img.shields.io/badge/Docker-DevOps-38BDF8?style=for-the-badge&logo=docker" alt="Docker">
-            <img src="https://img.shields.io/badge/AI-Gemini_API-4ADE80?style=for-the-badge&logo=google" alt="Gemini">
-        </div>
-
-        <div class="athlete-section">
-            <h3 style="color: var(--accent-green);">⚡ The High-Performance Mindset</h3>
-            <p>My code runs on the same discipline I bring to sports.</p>
-            <div class="grid" style="margin-top:2rem; text-align:left;">
-                <div>
-                    <strong>🏆 Strategy</strong><br>
-                    Like resource management in <i>Clash of Clans</i>, I optimize system resources and database queries for maximum efficiency.
-                </div>
-                <div>
-                    <strong>⏱ Endurance</strong><br>
-                    Debugging complex race conditions requires the same mental stamina and focus as a competitive match.
-                </div>
+        <section class="hero">
+            <h1>Gousik Rao</h1>
+            <p class="subtitle">Software Engineer (Java/Spring Boot) | Incoming M.Sc. Candidate (Germany 2026)</p>
+            <div class="badges">
+                <a href="mailto:gousikthason@gmail.com" class="btn">Get in Touch</a>
+                <a href="resume.pdf" target="_blank" class="btn" style="background: transparent; border: 2px solid var(--accent); color: var(--text-main);">
+                    📄 CV / Resume
+                </a>
             </div>
+        </section>
+
+        <div class="card">
+            <h2>🎯 The Vision: AI Infrastructure</h2>
+            <p style="color: var(--text-muted);">
+                Currently bridging the gap between robust <strong>Backend Engineering</strong> and <strong>AI Integration</strong>. 
+                My goal is to architect scalable AI systems in the German tech ecosystem[cite: 14].
+            </p>
         </div>
 
-        <h2 id="projects" style="margin-top: 4rem;">📂 Featured Projects</h2>
+        <h2>🛠 Technical Arsenal</h2>
+        <div class="card badges">
+            <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
+            <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot">
+            <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+            <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+            <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white" alt="Gemini AI">
+            <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+        </div>
+
+        <h2>📂 Featured Projects</h2>
         <div class="grid">
             <div class="card">
                 <h3>🛒 E-Commerce AI Backend</h3>
-                <p style="color:#94A3B8; font-size:0.9rem;">Spring Boot • PostgreSQL • Gemini AI</p>
-                <p>Engineered a modular backend with an <strong>AI-driven recommendation engine</strong> (Gemini API) to personalize user shopping experiences.</p>
-                <a href="#" style="color:var(--accent-blue);">View Code →</a>
+                <p style="color: var(--accent); font-size: 0.9rem; font-weight: bold;">Spring Boot • PostgreSQL • Gemini AI</p>
+                <p style="color: var(--text-muted);">
+                    Engineered a complete backend system with an <strong>AI-driven recommendation engine</strong>. 
+                    Integrated Gemini AI API to analyze user preferences[cite: 19].
+                </p>
             </div>
             <div class="card">
                 <h3>💬 Secure Messaging App</h3>
-                <p style="color:#94A3B8; font-size:0.9rem;">Java • Spring Security • JWT</p>
-                <p>Migrated legacy Servlet architecture to Spring Boot, reducing boilerplate by 30%. Implemented Role-Based Access Control.</p>
-                <a href="#" style="color:var(--accent-blue);">View Code →</a>
+                <p style="color: var(--accent); font-size: 0.9rem; font-weight: bold;">Spring Security • JWT • Migration</p>
+                <p style="color: var(--text-muted);">
+                    Led the migration from Java Servlets to <strong>Spring Boot</strong>, reducing boilerplate code by 30%. 
+                    Implemented Role-Based Access Control[cite: 26, 60].
+                </p>
             </div>
         </div>
 
-        <h2 style="margin-top: 4rem;">📊 GitHub Activity</h2>
-        <div style="text-align: center;">
-            <img src="https://github-readme-stats.vercel.app/api?username=gousik-rao&show_icons=true&theme=tokyonight&hide_border=true&bg_color=1E293B&title_color=38BDF8&text_color=E2E8F0" alt="GitHub Stats" style="max-width:100%; height:auto;">
+        <div class="card" style="border-left: 4px solid var(--accent);">
+            <h3>⚡ The Athlete's Mindset</h3>
+            <p style="color: var(--text-muted);">
+                I approach code with the same discipline I bring to sports.
+            </p>
+            <ul style="color: var(--text-muted); padding-left: 1.2rem;">
+                <li><strong>Strategy:</strong> Like resource management in <em>Clash of Clans</em>, I optimize database queries for efficiency.</li>
+                <li><strong>Endurance:</strong> Debugging complex race conditions requires the same focus as a 90-minute match.</li>
+                <li><strong>Flow:</strong> Powered by high-tempo music (Hans Zimmer), I maintain deep focus during deployment cycles.</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Competitive Programming</h2>
+        <div class="grid">
+            <div class="card" style="text-align:center;">
+                <h3 style="margin-bottom:1rem;">LeetCode</h3>
+                <img src="https://leetcard.jacoblin.cool/gousik_N?theme=dark&font=Inter&ext=heatmap" alt="LeetCode" style="width:100%; border-radius:8px;">
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3 style="margin-bottom:1rem;">GeeksforGeeks</h3>
+                <img src="https://geeks-for-geeks-stats-api.vercel.app/?username=gousikthason" alt="GFG" style="width:100%; filter: invert(0.9) hue-rotate(180deg); border-radius:8px;">
+            </div>
+        </div>
+
+        <h2>📜 Credentials & Internships</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <img src="cert-uniq.png" alt="Uniq Cert" class="cert-img">
+                <h3>Java Full Stack Internship</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Uniq Technologies • <em>Dec 2024 - June 2025</em></p>
+                <div style="margin-top:10px;">
+                    <span class="tag">Java</span> <span class="tag">Full Stack</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cert-shiash.png" alt="Shiash Cert" class="cert-img">
+                <h3>Java Platform Internship</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Shiash Info Solutions • <em>Sep 2024 - Nov 2024</em></p>
+                <div style="margin-top:10px;">
+                    <span class="tag">Backend</span> <span class="tag">Punctual & Hard Working</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cert-iit.png" alt="IIT Cert" class="cert-img">
+                <h3>Java Training Certificate</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">IIT Bombay (Spoken Tutorial) • <em>March 2022</em></p>
+                <div style="margin-top:10px;">
+                    <span class="tag">Academic</span> <span class="tag">Excellence</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cert-mongo.png" alt="Mongo Cert" class="cert-img">
+                <h3>MongoDB Essentials</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Infosys Springboard • <em>Dec 2022</em></p>
+                <div style="margin-top:10px;">
+                    <span class="tag">Database</span> <span class="tag">NoSQL</span>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>📊 GitHub Activity</h2>
+        <div style="text-align:center;">
+             <img src="https://github-readme-streak-stats.herokuapp.com/?user=gousik-Rao&theme=tokyonight&hide_border=true&background=0F172A&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8" 
+                 alt="GitHub Streak" 
+                 style="width:100%; 
+                 max-width:800px;">
         </div>
 
     </div>
 
     <footer>
         <p>© 2025 Gousik Rao. Built for Performance.</p>
+        <p style="font-size: 0.8rem;">
+            <a href="https://www.linkedin.com/in/gousik-software-engineer" style="color: var(--text-muted);">LinkedIn</a> • 
+            <a href="https://github.com/gousik-Rao" style="color: var(--text-muted);">GitHub</a>
+        </p>
     </footer>
 
+    <script>
+        // Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            
+            // Optional: Save preference to local storage so it remembers next time
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check for saved user preference on load
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
 </body>
 </html>
