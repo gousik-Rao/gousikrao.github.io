@@ -1,6 +1,5 @@
-# gousikrao.github.io
 
-# Hi, I'm [Your Name].
+# Hi, I'm Gousik.
 
 > **Computer Science Undergraduate | Full-Stack Developer**
 > *Aspiring AI Engineer & Architect | Incoming Master's Candidate (Germany 2026)*
@@ -35,26 +34,26 @@ I believe that physical resilience fuels mental sharpness. My career is defined 
 
 ### ⏱ Experience Timeline
 
-**Software Engineer Intern** | *[Company Name]*
-*(Jan 2024 – Present)*
+**Software Engineer Intern** | *Uniq Solutions*
+*(Jan 2024 – June)*
 * **Key Contribution:** Engineered a microservices architecture using Spring Boot, laying the groundwork for scalable data handling.
 * **Soft Skill:** Adapted to agile workflows, mirroring a sports team's collaborative dynamic.
 
-**Web Developer Intern** | *[Previous Company]*
-*(Jan 2023 – Dec 2023)*
+**Web Developer Intern** | *Shiash Info Solutions*
+*(September 2023 – Dec 2023)*
 * **Key Contribution:** Developed a full-stack inventory management system using Java and SQL.
 
 ---
 
 ### 📂 Project Spotlight
 
-#### 1. [Project Name] (Java/PostgreSQL)
+#### 1. [Quick Cart] (Java/PostgreSQL)
 *A high-performance inventory tracking system.*
 * **Tech:** Spring Boot, Hibernate, PostgreSQL.
 * **Why it matters:** Demonstrates my ability to build stable backend systems required for data-heavy AI applications.
 * [View Code](#) | [Live Demo](#)
 
-#### 2. [Your Web App Name]
+#### 2. [Messaging Web App]
 *Real-time web application.*
 * **Tech:** Java, React.
 * **Status:** Polishing for Master's Application Showcase.
